@@ -6,12 +6,12 @@ function Quiz(questions) {
     this.timer = null;
 }
 
-// Get the current question
+// Get current question
 Quiz.prototype.getCurrentQuestion = function () {
     return this.questions[this.currentQuestionIndex];
 };
 
-// Display the question and options
+// Display question and options
 function displayQuestion(quiz) {
     const questionElement = document.getElementById('question');
     const optionsElement = document.getElementById('options');
@@ -81,11 +81,11 @@ function checkAnswer(quiz, selectedOptionIndex) {
         } else {
             displayFinalScore(quiz);
         }
-    }, 1500); // Display feedback for 1.5 seconds
+    }, 6000); // Display feedback for 6 seconds
 }
 
-// Sample questions
-const sampleQuestions = [
+// Questions
+const quizQuestions = [
     {
         questionText: 'What is the capital of France?',
         options: ['Paris', 'London', 'Berlin', 'Rome'],
@@ -111,10 +111,10 @@ const sampleQuestions = [
         options: ['Venus', 'Mars', 'Earth', 'Saturn'],
         correctAnswer: 2
     },
-    // Add more sample questions
+    // Add more quiz questions
 ];
 
-const quiz = new Quiz(sampleQuestions);
+const quiz = new Quiz(quizQuestions);
 displayQuestion(quiz);
 
 // Display the final quiz score
