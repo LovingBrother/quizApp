@@ -112,29 +112,29 @@ const quizQuestions = [
         correctAnswer: 2
     },
     {
-        questionText: 'Which planet is known as the "Blue Planet"?',
-        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
-        correctAnswer: 2
+        questionText: 'What do the planets in the solar system orbit around?',
+        options: ['Venus', 'Mars', 'Earth', 'Sun'],
+        correctAnswer: 3
     },
     {
-        questionText: 'Which planet is known as the "Blue Planet"?',
-        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
-        correctAnswer: 2
+        questionText: 'How many planets are there in the Solar System?"?',
+        options: ['8', '5', '3', '7'],
+        correctAnswer: 0
     },
     {
-        questionText: 'Which planet is known as the "Blue Planet"?',
-        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
-        correctAnswer: 2
+        questionText: 'Which planet is closest to the sun?',
+        options: ['Venus', 'Jupiter', 'Earth', 'Mercury'],
+        correctAnswer: 3
     },
     {
-        questionText: 'Which planet is known as the "Blue Planet"?',
-        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
-        correctAnswer: 2
+        questionText: 'True or false? The moon is a planet.',
+        options: ['True', 'False', 'Not sure'],
+        correctAnswer: 1
     },
     {
-        questionText: 'Which planet is known as the "Blue Planet"?',
-        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
-        correctAnswer: 2
+        questionText: 'Which planet is the furthest from the sun?',
+        options: ['Venus', 'Neptune', 'Earth', 'Saturn'],
+        correctAnswer: 1
     },
     // Add more quiz questions
 ];
