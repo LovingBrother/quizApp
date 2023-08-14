@@ -11,6 +11,27 @@ Quiz.prototype.getCurrentQuestion = function () {
     return this.questions[this.currentQuestionIndex];
 };
 
+// Start Screen
+function displayStartScreen(quiz) {
+    const questionElement = document.getElementById('question');
+    const optionsElement = document.getElementById('options');
+    const feedbackElement = document.getElementById('feedback');
+    const nextButton = document.getElementById('next-btn');
+    const timerElement = document.getElementById('timer');
+
+    questionElement.textContent = 'Welcome to AfriEd Quiz!';
+    optionsElement.innerHTML = '';
+feedbackElement.textContent = 'Note: You can not change answers, go back to previous question, pause the timer, from start to finish of this quiz';
+    nextButton.textContent = 'Start Quiz';
+    timerElement.textContent = '';
+
+    nextButton.style.display = 'block';
+    nextButton.addEventListener('click', () => {
+        nextButton.style.display = 'none';
+        displayQuestion(quiz);
+    });
+}
+
 // Display question and options
 function displayQuestion(quiz) {
     const questionElement = document.getElementById('question');
@@ -140,7 +161,11 @@ const quizQuestions = [
 ];
 
 const quiz = new Quiz(quizQuestions);
-displayQuestion(quiz);
+
+displayStartScreen(quiz)
+
+
+//displayQuestion(quiz);
 
 // Display the final quiz score
 function displayFinalScore(quiz) {
