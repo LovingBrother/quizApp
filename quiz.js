@@ -111,6 +111,31 @@ const quizQuestions = [
         options: ['Venus', 'Mars', 'Earth', 'Saturn'],
         correctAnswer: 2
     },
+    {
+        questionText: 'Which planet is known as the "Blue Planet"?',
+        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
+        correctAnswer: 2
+    },
+    {
+        questionText: 'Which planet is known as the "Blue Planet"?',
+        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
+        correctAnswer: 2
+    },
+    {
+        questionText: 'Which planet is known as the "Blue Planet"?',
+        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
+        correctAnswer: 2
+    },
+    {
+        questionText: 'Which planet is known as the "Blue Planet"?',
+        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
+        correctAnswer: 2
+    },
+    {
+        questionText: 'Which planet is known as the "Blue Planet"?',
+        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
+        correctAnswer: 2
+    },
     // Add more quiz questions
 ];
 
