@@ -106,3 +106,24 @@ body {
 #next-btn:hover {
     background-color: #0056b3;
 }
+
+.anim-bounce {
+    animation: anim-bounce 3s linear infinite;
+  }
+  @keyframes anim-bounce {
+    0% {
+      transform: translateY(0px);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    75% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }

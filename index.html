@@ -13,25 +13,13 @@
 </head>
 
 <body>
-    <section class="container-fluid bg-primary-subtle" style="height: 100vh;">
-        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-            <div class="row align-items-center gy-5 flex-lg-row flex-column-reverse g-lg-5 py-5">
-              <div class="col-lg-7 text-center text-lg-start">
-                <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Test Your Knowledge</h1>
-                <p class="col-lg-10 fs-4">Welcome to AfriEd Quiz!</p>
-                <p class="col-lg-10 fs-4 fw-lighter">Note: You can not change answers, go back to previous question, pause the timer, from start to finish of this quiz</p>
-                <button class="w-25 btn btn-md btn-primary" id="next-btn" type="button">Start Quiz</button>
-              </div>
-              <div class="col-md-10 mx-auto col-lg-5">
-                <img src="./assets/images/bg_image.svg" class="img-fluid">
-               </div>
-            </div>
-        </div>
-    </section>
-    <!-- <div class="quiz-container">
-        <div class="quiz-header">
-            <h1>Test Your Knowledge</h1>
-        </div>
+    <div id="container"></div>
+    <div id="quiz-container"></div>
+    <div id="score-container"></div>
+    
+    <!-- <button id="start-button">Start Quiz</button>
+    <div id="question-container"></div>
+    <div class="quiz-container">
         <div class="quiz-content">
             <div class="question-container">
                 <p id="question"></p>
@@ -44,6 +32,7 @@
             <button id="next-btn">Next</button>
         </div>
     </div> -->
-    <script src="quiz.js"></script>
+    
+      <script type="module" src="view.js"></script>
 </body>
 </html>
