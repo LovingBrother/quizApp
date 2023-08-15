@@ -11,18 +11,25 @@ class Quiz {
         return this.questions[this.currentQuestionIndex];
     };
 
-//   checkAnswer(selectedOption) {
-//     const currentQuestion = this.getCurrentQuestion();
-//     if (currentQuestion.correct === selectedOption) {
-//       this.score++;
-//       return true;
-//     }
-//     return false;
-//   }
+  checkAnswer(selectedOptionIndex) {
+    const currentQuestion = this.getCurrentQuestion();
+    if (currentQuestion.correctAnswer === selectedOptionIndex) {
+      this.score++;
+      return true;
+    }
+    return false;
+  };
 
-//   moveNext() {
-//     this.currentQuestionIndex++;
-//   }
+  moveNext() {
+      this.currentQuestionIndex++;
+  };
+
+  resetQuiz() {
+    this.currentQuestionIndex = 0;
+    this.score = 0;
+    this.timer = null;
+  }
+
 }
 
 export default Quiz;

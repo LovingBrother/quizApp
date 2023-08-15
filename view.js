@@ -22,7 +22,63 @@ let quiz;
 //   displayQuestion(quiz);
 // }
 
-displayStartScreen()
+// Questions
+const quizQuestions = [
+    {
+        questionText: 'What is the capital of France?',
+        options: ['Paris', 'London', 'Berlin', 'Rome'],
+        correctAnswer: 0
+    },
+    {
+        questionText: 'Which planet is known as the "Red Planet"?',
+        options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+        correctAnswer: 1
+    },
+    {
+        questionText: 'What is the largest ocean on Earth?',
+        options: ['Pacific Ocean', 'Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean'],
+        correctAnswer: 0
+    },
+    {
+        questionText: 'Which gas do plants primarily use for photosynthesis?',
+        options: ['Oxygen', 'Carbon Dioxide', 'Nitrogen', 'Hydrogen'],
+        correctAnswer: 1
+    },
+    {
+        questionText: 'Which planet is known as the "Blue Planet"?',
+        options: ['Venus', 'Mars', 'Earth', 'Saturn'],
+        correctAnswer: 2
+    },
+    {
+        questionText: 'What do the planets in the solar system orbit around?',
+        options: ['Venus', 'Mars', 'Earth', 'Sun'],
+        correctAnswer: 3
+    },
+    {
+        questionText: 'How many planets are there in the Solar System?"?',
+        options: ['8', '5', '3', '7'],
+        correctAnswer: 0
+    },
+    {
+        questionText: 'Which planet is closest to the sun?',
+        options: ['Venus', 'Jupiter', 'Earth', 'Mercury'],
+        correctAnswer: 3
+    },
+    {
+        questionText: 'True or false? The moon is a planet.',
+        options: ['True', 'False', 'Not sure'],
+        correctAnswer: 1
+    },
+    {
+        questionText: 'Which planet is the furthest from the sun?',
+        options: ['Venus', 'Neptune', 'Earth', 'Saturn'],
+        correctAnswer: 1
+    },
+    // Add more quiz questions
+];
+
+displayStartScreen();
+quiz = new Quiz(quizQuestions);
 
 // function displayQuestion(quiz) {
 //     console.log(quiz);
@@ -105,15 +161,9 @@ function displayQuestion() {
                         <h6 class="text-danger">00:00</h6>
                     </div>
                     <div class="d-block">
-                        <h6>What is the capital of France?</h6>
+                        <h6 id="question-text"></h6>
                     </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
-                    </ul>
+                    <ul class="list-group" id="options"></ul>
                     <div class="my-2 d-flex align-items-center justify-content-center">
                         <button class="w-25 btn btn-md btn-primary" id="next-button" type="button">Next >> </button>
                         <button class="w-25 btn btn-md btn-primary" id="submit-button" type="button">Submit </button>
@@ -124,12 +174,42 @@ function displayQuestion() {
             </div>
         </section>
     `;
+    const questionTextElement = document.getElementById('question-text');
+    const submitButton = document.getElementById('submit-button');
+    const optionsElement = document.querySelector('.list-group');
+    submitButton.style.display = 'none';
 
-    const nextButton = document.getElementById('submit-button');
+    const currentQuestion = quiz.getCurrentQuestion();
+    questionTextElement.textContent  = `
+    Question ${quiz.currentQuestionIndex + 1}: ${currentQuestion.questionText}`;
+
+    currentQuestion.options.forEach((option, index) => {
+        const optionList = document.createElement('li');
+        optionList.textContent = option;
+        optionList.className = 'list-group-item';
+        optionList.addEventListener('click', () => {
+            changeSelectedOptionBgColor(quiz.checkAnswer(index), index);
+        });
+        optionsElement.appendChild(optionList);
+    });
+
+
+    const nextButton = document.getElementById('next-button');
     nextButton.addEventListener('click', () => {
+               
+        if(quiz.currentQuestionIndex == (quiz.questions.length - 1) ) {
+            nextButton.style.display = 'none';
+            submitButton.style.display = 'block';
+        } else {
+            quiz.moveNext();
+            displayQuestion();
+        }
+    });
+    
+    submitButton.addEventListener('click', () => {
         const quizContainer = document.getElementById('quiz-container');
         quizContainer.innerHTML = '';
-        // nextButton.style.display = 'none';
+        nextButton.style.display = 'none';
         showTotalScore();
     });
 }
@@ -145,7 +225,7 @@ function showTotalScore() {
                             <h4>Total Score</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-center border border-dark-subtle rounded-circle" style="width: 50px; height: 50px;">
-                                    <h6>50</h6>
+                                    <h6>${quiz.score}</h6>
                                 </div>
                             </div>
                             <button class="mt-3 w-25 btn btn-md btn-primary" id="home-button" type="button">Home </button>
@@ -162,9 +242,36 @@ function showTotalScore() {
         const scoreContainer = document.getElementById('score-container');
         quizContainer.innerHTML = '';
         scoreContainer.innerHTML = '';
+        quiz.resetQuiz();
         // nextButton.style.display = 'none';
         displayStartScreen();
     });
+}
+
+function changeSelectedOptionBgColor(status, selectedOptionIndex) {
+    const feedbackElement = document.getElementById('feedback');
+    const optionsList = document.getElementById('options');
+    const currentQuestion = quiz.getCurrentQuestion();
+    const correctOptionIndex = currentQuestion.correctAnswer;
+
+     // clearInterval(quiz.timer);
+
+   if(status){
+        console.log('correct color');
+        optionsList.children[selectedOptionIndex].style.backgroundColor = '#198754';
+        optionsList.children[selectedOptionIndex].style.color = '#fff';
+        console.log(quiz.score);
+   } else {
+        console.log('wrong color');
+        if(selectedOptionIndex !== null) {
+            optionsList.children[selectedOptionIndex].style.backgroundColor = '#dc3545';
+            optionsList.children[selectedOptionIndex].style.color = '#fff';
+        }
+        optionsList.children[correctOptionIndex].style.backgroundColor = '#198754';
+        optionsList.children[correctOptionIndex].style.color = '#fff';
+   }
+
+   
 }
 
 function showQuestion() {
