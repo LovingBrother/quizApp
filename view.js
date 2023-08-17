@@ -272,7 +272,7 @@ function changeSelectedOptionBgColor(status, selectedOptionIndex) {
                displayQuestion();
             }
                
-           }, 100); // Display feedback for 2 seconds
+           }, 2000); // Display feedback for 2 seconds
        } else {
             console.log('wrong color');
             if(selectedOptionIndex !== null) {
@@ -287,7 +287,7 @@ function changeSelectedOptionBgColor(status, selectedOptionIndex) {
                 quiz.moveNext();
                displayQuestion();
             }
-           }, 100); // Display feedback for 2 seconds
+           }, 2000); // Display feedback for 2 seconds
        }
     
    
