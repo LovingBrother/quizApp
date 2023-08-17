@@ -148,6 +148,7 @@ function displayStartScreen() {
         displayQuestion();
     });
 }
+{/* <button class="w-25 btn btn-md btn-primary" id="next-button" type="button">Next >> </button> */}
 
 // Function to display a question and options
 function displayQuestion() {
@@ -165,7 +166,6 @@ function displayQuestion() {
                     </div>
                     <ul class="list-group" id="options"></ul>
                     <div class="my-2 d-flex align-items-center justify-content-center">
-                        <button class="w-25 btn btn-md btn-primary" id="next-button" type="button">Next >> </button>
                         <button class="w-25 btn btn-md btn-primary" id="submit-button" type="button">Submit </button>
                     </div>
                         
@@ -193,23 +193,27 @@ function displayQuestion() {
         optionsElement.appendChild(optionList);
     });
 
+    if(quiz.currentQuestionIndex == (quiz.questions.length - 1) ) {
+        submitButton.style.display = 'block';
+    } 
 
-    const nextButton = document.getElementById('next-button');
-    nextButton.addEventListener('click', () => {
+
+    // const nextButton = document.getElementById('next-button');
+    // nextButton.addEventListener('click', () => {
                
-        if(quiz.currentQuestionIndex == (quiz.questions.length - 1) ) {
-            nextButton.style.display = 'none';
-            submitButton.style.display = 'block';
-        } else {
-            quiz.moveNext();
-            displayQuestion();
-        }
-    });
+    //     if(quiz.currentQuestionIndex == (quiz.questions.length - 1) ) {
+    //         nextButton.style.display = 'none';
+    //         submitButton.style.display = 'block';
+    //     } else {
+    //         quiz.moveNext();
+    //         displayQuestion();
+    //     }
+    // });
     
     submitButton.addEventListener('click', () => {
         const quizContainer = document.getElementById('quiz-container');
         quizContainer.innerHTML = '';
-        nextButton.style.display = 'none';
+        // nextButton.style.display = 'none';
         showTotalScore();
     });
 }
@@ -225,7 +229,7 @@ function showTotalScore() {
                             <h4>Total Score</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <div class="d-flex align-items-center justify-content-center border border-dark-subtle rounded-circle" style="width: 50px; height: 50px;">
-                                    <h6>${quiz.score}</h6>
+                                    <h6>${quiz.score}/10</h6>
                                 </div>
                             </div>
                             <button class="mt-3 w-25 btn btn-md btn-primary" id="home-button" type="button">Home </button>
@@ -256,21 +260,36 @@ function changeSelectedOptionBgColor(status, selectedOptionIndex) {
 
      // clearInterval(quiz.timer);
 
-   if(status){
-        console.log('correct color');
-        optionsList.children[selectedOptionIndex].style.backgroundColor = '#198754';
-        optionsList.children[selectedOptionIndex].style.color = '#fff';
-        console.log(quiz.score);
-   } else {
-        console.log('wrong color');
-        if(selectedOptionIndex !== null) {
-            optionsList.children[selectedOptionIndex].style.backgroundColor = '#dc3545';
+     
+        if(status){
+            console.log('correct color');
+            optionsList.children[selectedOptionIndex].style.backgroundColor = '#198754';
             optionsList.children[selectedOptionIndex].style.color = '#fff';
-        }
-        optionsList.children[correctOptionIndex].style.backgroundColor = '#198754';
-        optionsList.children[correctOptionIndex].style.color = '#fff';
-   }
-
+            
+           setTimeout(() => {
+            if(quiz.currentQuestionIndex < (quiz.questions.length - 1) ) {
+                quiz.moveNext();
+               displayQuestion();
+            }
+               
+           }, 100); // Display feedback for 2 seconds
+       } else {
+            console.log('wrong color');
+            if(selectedOptionIndex !== null) {
+                optionsList.children[selectedOptionIndex].style.backgroundColor = '#dc3545';
+                optionsList.children[selectedOptionIndex].style.color = '#fff';
+            }
+            optionsList.children[correctOptionIndex].style.backgroundColor = '#198754';
+            optionsList.children[correctOptionIndex].style.color = '#fff';
+            
+           setTimeout(() => {
+            if(quiz.currentQuestionIndex < (quiz.questions.length - 1) ) {
+                quiz.moveNext();
+               displayQuestion();
+            }
+           }, 100); // Display feedback for 2 seconds
+       }
+    
    
 }
 
